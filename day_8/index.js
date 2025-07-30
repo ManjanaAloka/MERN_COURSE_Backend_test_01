@@ -1,8 +1,7 @@
 let winner = "manjana";
 let isJudgeBoardOk = true;
-
 async function my_Promise() {
-    const myPromise = new Promise(
+    return new Promise(
         (resolve, reject) => {
             if (isJudgeBoardOk) {
                 setTimeout(
@@ -22,19 +21,22 @@ async function my_Promise() {
                 });
             }
 
-            try {
-                let response = await myPromise;
-                console.log(response);
-            } catch (error) {
-                console.log(error);
-            }
-
         })
-
 }
 
-async function getUser(dbPass) {
-    const myPromise = new Promise(
+async function getWinner() {
+    try {
+        let response = await my_Promise();
+        console.log(response);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+
+function fetchUserData(dbPass) {
+    return new Promise(
         (resolve, reject) => {
             if (dbPass === "12345") {
                 resolve([
@@ -50,23 +52,21 @@ async function getUser(dbPass) {
                 })
             }
         });
+}
 
-
+async function getUser() {
     try {
-        let response = await myPromise;
+        let response = await fetchUserData("12345");
         console.log(response);
     } catch (error) {
         console.log(error);
     }
-    return myPromise;
 }
 
-
-
-
-my_Promise();
-
 getUser("12345");
+
+getWinner();
+
 
 // getUser("12345").then(
 //     (success) => {
